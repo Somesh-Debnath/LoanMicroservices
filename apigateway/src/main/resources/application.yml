@@ -1,0 +1,22 @@
+server:
+  port: 8999
+
+eureka:
+  instance:
+    hostname: localhost
+
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: loanplanservice
+          uri: lb://loanplanservice
+          predicates:
+            - Path=/loanplanservice/**
+        - id: baseinterestrateservice
+          uri: lb://baseinterestrateservice
+          predicates:
+            - Path=/baseinterestrateservice/**
